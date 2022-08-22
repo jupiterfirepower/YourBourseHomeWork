@@ -6,6 +6,7 @@ using YB.Todo.Entities;
 using System.Linq;
 using AutoMapper;
 using YB.Todo.DtoModels;
+using System;
 
 namespace YB.Todo.Services
 {
@@ -39,6 +40,9 @@ namespace YB.Todo.Services
         {
             var entity = _mapper.Map<ToDoEntity>(todoItem);
 
+            entity.CreatedOnUtc = DateTime.UtcNow;
+            entity.LastModifiedOnUtc = null;
+
             var entityEntry = await _context.ToDoRepository.AddAsync(entity);
             await _context.CompleteAsync();
 
@@ -48,6 +52,8 @@ namespace YB.Todo.Services
         public async Task<int> UpdateAsync(ToDoItem todoItem)
         {
             var entity = _mapper.Map<ToDoEntity>(todoItem);
+
+            entity.LastModifiedOnUtc = DateTime.UtcNow;
 
             await _context.ToDoRepository.UpdateAsync(entity);
             await _context.CompleteAsync();
