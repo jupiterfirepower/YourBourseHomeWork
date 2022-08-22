@@ -30,8 +30,6 @@ public class TodoController : ControllerBase
     {
         var data = await _service.GetListAsync();
 
-        _logger.LogInformation($"{nameof(GetListAsync)} data.Count - {data.Count}");
-
         return Ok(data);
     }
 
@@ -54,11 +52,7 @@ public class TodoController : ControllerBase
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status201Created)]
     public async Task<ActionResult<TodoItemResult>> AddAsync([FromBody] AddToDoItem todoItem)
     {
-        _logger.LogInformation($"{nameof(AddAsync)} call.");
-
         var id = await _service.AddAsync(todoItem);
-
-        _logger.LogInformation($"{nameof(AddAsync)} Id - {id}");
 
         var result = new TodoItemResult { Id = id };
 
@@ -77,11 +71,7 @@ public class TodoController : ControllerBase
             return NotFound(new WebErrorResult(StatusCodes.Status404NotFound, "Not found", $"Entity {todoItem.Id} not found."));
         }
 
-        _logger.LogInformation($"{nameof(UpdateAsync)} call.");
-
         var id = await _service.UpdateAsync(todoItem);
-
-        _logger.LogInformation($"{nameof(UpdateAsync)} Id - {id}");
 
         var result = new TodoItemResult { Id = id };
 
