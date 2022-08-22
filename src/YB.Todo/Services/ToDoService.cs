@@ -45,6 +45,16 @@ namespace YB.Todo.Services
             return entityEntry.Id;
         }
 
+        public async Task<int> UpdateAsync(ToDoItem todoItem)
+        {
+            var entity = _mapper.Map<ToDoEntity>(todoItem);
+
+            await _context.ToDoRepository.UpdateAsync(entity);
+            await _context.CompleteAsync();
+
+            return entity.Id;
+        }
+
         public async Task<bool> DeleteAsync(int id)
         {
             var entity = await _context.ToDoRepository.GetByIdAsync(id);

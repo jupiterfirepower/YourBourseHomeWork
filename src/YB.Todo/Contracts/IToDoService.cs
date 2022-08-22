@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using YB.Todo.DtoModels;
-using YB.Todo.Entities;
 
 namespace YB.Todo.Contracts
 {
@@ -12,6 +11,8 @@ namespace YB.Todo.Contracts
         Task<ToDoItem> GetAsync(int id);
 
         Task<int> AddAsync(ToDoItem todoItem);
+
+        Task<int> UpdateAsync(ToDoItem todoItem);
 
         Task<bool> DeleteAsync(int id);
     }
