@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  # Core Services
+  yb.platform.microservice.todo:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "31000:80"
+  
