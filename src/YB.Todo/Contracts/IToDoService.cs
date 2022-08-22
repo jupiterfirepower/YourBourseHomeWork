@@ -10,9 +10,9 @@ namespace YB.Todo.Contracts
 
         Task<ToDoItem> GetAsync(int id);
 
-        Task<int> AddAsync(ToDoItem todoItem);
+        Task<int> AddAsync(AddToDoItem todoItem);
 
-        Task<int> UpdateAsync(ToDoItem todoItem);
+        Task<int> UpdateAsync(UpdateToDoItem todoItem);
 
         Task<bool> DeleteAsync(int id);
     }

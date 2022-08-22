@@ -52,7 +52,7 @@ public class TodoController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status201Created)]
-    public async Task<ActionResult<TodoItemResult>> AddAsync([FromBody] ToDoItem todoItem)
+    public async Task<ActionResult<TodoItemResult>> AddAsync([FromBody] AddToDoItem todoItem)
     {
         _logger.LogInformation($"{nameof(AddAsync)} call.");
 
@@ -68,7 +68,7 @@ public class TodoController : ControllerBase
     [HttpPut]
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(WebErrorResult), StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<TodoItemResult>> UpdateAsync([FromBody] ToDoItem todoItem)
+    public async Task<ActionResult<TodoItemResult>> UpdateAsync([FromBody] UpdateToDoItem todoItem)
     {
         var model = await _service.GetAsync(todoItem.Id);
 

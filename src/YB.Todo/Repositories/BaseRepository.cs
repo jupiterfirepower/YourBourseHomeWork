@@ -28,7 +28,6 @@ namespace YB.Todo.Repositories
             }
 
             await _dbContext.AddAsync(entity);
-            //await _dbContext.SaveChangesAsync();
 
             return entity;
         }
@@ -40,9 +39,11 @@ namespace YB.Todo.Repositories
                 throw new ArgumentNullException($"{nameof(entity)} entity must not be null");
             }
 
+            _dbContext.Entry(entity).State = EntityState.Modified;
+
             _dbContext.Update(entity);
+
             await Task.Delay(0);
-            //await _dbContext.SaveChangesAsync();
         }
 
         public async ValueTask<TEntity> GetByIdAsync(int id)
@@ -58,8 +59,8 @@ namespace YB.Todo.Repositories
             }
 
             _dbContext.Remove(entity);
+
             await Task.Delay(0);
-            //await _dbContext.SaveChangesAsync();
         }
 
         protected IQueryable<TEntity> GetAll()

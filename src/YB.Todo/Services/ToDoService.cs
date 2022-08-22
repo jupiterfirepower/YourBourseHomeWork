@@ -36,7 +36,7 @@ namespace YB.Todo.Services
             return item != null ? _mapper.Map<ToDoItem>(item) : null;
         }
 
-        public async Task<int> AddAsync(ToDoItem todoItem)
+        public async Task<int> AddAsync(AddToDoItem todoItem)
         {
             var entity = _mapper.Map<ToDoEntity>(todoItem);
 
@@ -49,10 +49,12 @@ namespace YB.Todo.Services
             return entityEntry.Id;
         }
 
-        public async Task<int> UpdateAsync(ToDoItem todoItem)
+        public async Task<int> UpdateAsync(UpdateToDoItem todoItem)
         {
-            var entity = _mapper.Map<ToDoEntity>(todoItem);
+            var entity = await _context.ToDoRepository.GetByIdAsync(todoItem.Id);
 
+            entity.Description = todoItem.Description;
+            entity.IsComplete = todoItem.IsComplete;
             entity.LastModifiedOnUtc = DateTime.UtcNow;
 
             await _context.ToDoRepository.UpdateAsync(entity);
