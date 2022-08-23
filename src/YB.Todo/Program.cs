@@ -23,9 +23,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddCors(opts => opts.AddPolicy(name: localHostOrigins, policy =>
 {
-    policy.WithOrigins("localhost:5178", "http://localhost:5178", "localhost:7178", "https://localhost:7178")
+    policy.WithOrigins("localhost:5178", "http://localhost:5178", "localhost:7178", "https://localhost:7178", "http://localhost:3000")
           .AllowAnyHeader()
-          .AllowAnyMethod();
+          .AllowAnyMethod()
+          .AllowAnyOrigin();
 }));
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -64,3 +65,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

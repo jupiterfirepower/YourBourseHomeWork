@@ -2,7 +2,7 @@
 
 namespace YB.Todo.DtoModels
 {
-    public class UpdateToDoItem
+    public record UpdateToDoItem
     {
         [Required]
         public int Id { get; set; }

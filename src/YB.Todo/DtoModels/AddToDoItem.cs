@@ -2,7 +2,7 @@
 
 namespace YB.Todo.DtoModels
 {
-    public class AddToDoItem
+    public record AddToDoItem
     {
         [Required]
         [MaxLength(250)]

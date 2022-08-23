@@ -3,7 +3,7 @@ using System;
 
 namespace YB.Todo.DtoModels
 {
-    public class ToDoItem
+    public record ToDoItem
     {
         [Required]
         public int Id { get; set; }
