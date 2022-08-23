@@ -41,6 +41,7 @@ namespace YB.Todo.Services
             var entity = _mapper.Map<ToDoEntity>(todoItem);
 
             entity.CreatedOnUtc = DateTime.UtcNow;
+            entity.IsComplete = false;
             entity.LastModifiedOnUtc = null;
 
             var entityEntry = await _context.ToDoRepository.AddAsync(entity);

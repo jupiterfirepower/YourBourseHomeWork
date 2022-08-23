@@ -11,10 +11,14 @@ const Todo: React.FC<Props> = ({ todo, updateTodo, deleteTodo }) => {
   return (
     <div className='Card'>
       <div className='Card--text'>
-        <h1 className={checkTodo}>{todo.id}</h1>
-        <span className={checkTodo}>{todo.description}</span>
+        <h1 className={checkTodo}>{todo.id}<span>&emsp;</span><span className={checkTodo}>{todo.description}</span></h1>
+        <label className={checkTodo}>Created:</label>
         <span>&emsp;</span>
         <span className={checkTodo}>{todo.createdOnUtc}</span>
+        <span>&emsp;</span>
+        <label className={checkTodo}>Modified:</label>
+        <span>&emsp;</span>
+        <span className={checkTodo}>{todo.lastModifiedOnUtc}</span>
       </div>
       <div className='Card--button'>
         <button
