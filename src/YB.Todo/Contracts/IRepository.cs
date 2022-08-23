@@ -5,7 +5,7 @@ namespace YB.Todo.Contracts
     public interface IRepository<TEntity>
         where TEntity : class, new()
     {
-        ValueTask<TEntity?> GetByIdAsync(int id);
+        ValueTask<TEntity> GetByIdAsync(int id);
 
         Task<TEntity> AddAsync(TEntity entity);
 

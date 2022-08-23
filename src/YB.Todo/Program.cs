@@ -9,12 +9,15 @@ using YB.Todo.Contracts;
 using YB.Todo.Data;
 using YB.Todo.Repositories;
 using YB.Todo.Services;
+using YB.Todo.Extentions;
 
 const string localHostOrigins = "_localHostOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddPlatformMvc();
 
 builder.Services.AddControllers();
 
