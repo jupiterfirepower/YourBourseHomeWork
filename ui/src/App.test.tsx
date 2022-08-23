@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders readme prompt', () => {
-  render(<App />);
-  const readmeElement = screen.getByText(/Please see the README at the root of the repository./i);
-  expect(readmeElement).toBeInTheDocument();
+test('renders learn react link', () => {
+  const { getByText } = render(<App />);
+  const linkElement = getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
 });
