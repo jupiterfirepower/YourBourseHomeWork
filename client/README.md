@@ -2,14 +2,14 @@ This project was bootstrapped with [Create React App].
 
 ## Available Scripts
 
-In the project directory, you can run:
-
-yarn add typescript --dev
-yarn add @types/form-data --dev
-# yarn openapi --input references/swagger.json --output references/codegen --client axios --postfix Service --useOptions --useUnionTypes
-
-yarn start
-
+In the project directory, you can run:<br/>
+<br/>
+yarn add typescript --dev<br/>
+yarn add @types/form-data --dev<br/>
+# yarn openapi --input references/swagger.json --output references/codegen --client axios --postfix Service --useOptions --useUnionTypes<br/>
+<br/>
+yarn start<br/>
+<br/>
 ### `yarn start`
 
 Runs the app in the development mode.<br />
