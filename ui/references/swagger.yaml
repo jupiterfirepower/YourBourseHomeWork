@@ -24,6 +24,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AddToDoItem'
+        required: true
       responses:
         '201':
           description: Success
@@ -39,6 +40,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateToDoItem'
+        required: true
       responses:
         '200':
           description: Success

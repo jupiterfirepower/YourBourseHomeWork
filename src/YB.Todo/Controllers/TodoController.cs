@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using YB.Todo.Contracts;
 using YB.Todo.DtoModels;
@@ -50,7 +51,7 @@ public class TodoController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status201Created)]
-    public async Task<ActionResult<TodoItemResult>> AddAsync([FromBody] AddToDoItem todoItem)
+    public async Task<ActionResult<TodoItemResult>> AddAsync([FromBody] [Required] AddToDoItem todoItem)
     {
         var id = await _service.AddAsync(todoItem);
 
@@ -62,7 +63,7 @@ public class TodoController : ControllerBase
     [HttpPut]
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(WebErrorResult), StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<TodoItemResult>> UpdateAsync([FromBody] UpdateToDoItem todoItem)
+    public async Task<ActionResult<TodoItemResult>> UpdateAsync([FromBody] [Required] UpdateToDoItem todoItem)
     {
         var model = await _service.GetAsync(todoItem.Id);
 

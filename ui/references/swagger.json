@@ -37,7 +37,8 @@
                 "$ref": "#/components/schemas/AddToDoItem"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "201": {
@@ -63,7 +64,8 @@
                 "$ref": "#/components/schemas/UpdateToDoItem"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
