@@ -2,8 +2,8 @@ import React from 'react'
 
 type Props = { 
   sortTodo: (e: React.FormEvent, formData: SortTodoProperty | any) => void 
-  refreshTodo: (e: React.FormEvent) => void
   sortCreatedTodo: (e: React.FormEvent) => void
+  refreshTodo: (e: React.FormEvent) => void
 }
 
 const SortTodo: React.FC<Props> = ({ sortTodo, refreshTodo, sortCreatedTodo }) => {

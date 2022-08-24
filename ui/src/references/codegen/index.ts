@@ -7,6 +7,8 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AddToDoItem } from './models/AddToDoItem';
+export type { CombineType } from './models/CombineType';
+export type { Sorting } from './models/Sorting';
 export type { ToDoItem } from './models/ToDoItem';
 export type { TodoItemResult } from './models/TodoItemResult';
 export type { UpdateToDoItem } from './models/UpdateToDoItem';

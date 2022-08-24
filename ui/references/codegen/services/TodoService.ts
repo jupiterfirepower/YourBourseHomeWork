@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { AddToDoItem } from '../models/AddToDoItem';
+import type { CombineType } from '../models/CombineType';
+import type { Sorting } from '../models/Sorting';
 import type { ToDoItem } from '../models/ToDoItem';
 import type { TodoItemResult } from '../models/TodoItemResult';
 import type { UpdateToDoItem } from '../models/UpdateToDoItem';
@@ -30,7 +32,7 @@ export class TodoService {
     public static postTodo({
 requestBody,
 }: {
-requestBody?: AddToDoItem,
+requestBody: AddToDoItem,
 }): CancelablePromise<TodoItemResult> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -47,7 +49,7 @@ requestBody?: AddToDoItem,
     public static putTodo({
 requestBody,
 }: {
-requestBody?: UpdateToDoItem,
+requestBody: UpdateToDoItem,
 }): CancelablePromise<TodoItemResult> {
         return __request(OpenAPI, {
             method: 'PUT',
@@ -56,6 +58,60 @@ requestBody?: UpdateToDoItem,
             mediaType: 'application/json',
             errors: {
                 404: `Not Found`,
+            },
+        });
+    }
+
+    /**
+     * @returns ToDoItem Success
+     * @throws ApiError
+     */
+    public static getTodoGetFiltered({
+idMin,
+idMax,
+description,
+isComplete,
+createdOnUtcMin,
+createdOnUtcMax,
+lastModifiedOnUtcMin,
+lastModifiedOnUtcMax,
+page,
+perPage,
+sortBy,
+sort,
+combineWith,
+}: {
+idMin?: number,
+idMax?: number,
+description?: string,
+isComplete?: boolean,
+createdOnUtcMin?: string,
+createdOnUtcMax?: string,
+lastModifiedOnUtcMin?: string,
+lastModifiedOnUtcMax?: string,
+page?: number,
+perPage?: number,
+sortBy?: Sorting,
+sort?: string,
+combineWith?: CombineType,
+}): CancelablePromise<Array<ToDoItem>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/Todo/GetFiltered',
+            query: {
+                'Id.Min': idMin,
+                'Id.Max': idMax,
+                'Description': description,
+                'IsComplete': isComplete,
+                'CreatedOnUtc.Min': createdOnUtcMin,
+                'CreatedOnUtc.Max': createdOnUtcMax,
+                'LastModifiedOnUtc.Min': lastModifiedOnUtcMin,
+                'LastModifiedOnUtc.Max': lastModifiedOnUtcMax,
+                'Page': page,
+                'PerPage': perPage,
+                'SortBy': sortBy,
+                'Sort': sort,
+                'CombineWith': combineWith,
             },
         });
     }

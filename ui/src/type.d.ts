@@ -15,3 +15,7 @@ interface SortTodoProperty {
     sortcreatedOnUtc: boolean;
     refresh: boolean;
 }
+
+interface ISearchTodoProperty {
+    description: string;
+}

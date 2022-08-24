@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -38,7 +37,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet("GetFiltered")]
-    public async Task<ActionResult<IEnumerable<ToDoItem>>> GetFiltered([FromQuery] ToDoItemFilter filter)
+    public async Task<ActionResult<IEnumerable<ToDoItem>>> GetFiltered([FromQuery] [Required] ToDoItemFilter filter)
     {
         var data = await _service.GetListAsync();
 

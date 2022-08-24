@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import TodoItem from './components/TodoItem'
 import AddTodo from './components/AddTodo'
 import SortTodo from './components/SortTodo'
-import { getTodos, addTodo, updateTodo, deleteTodo } from './API'
+import SearchTodo from './components/SearchTodo'
+import { getTodos, getFilteredTodos, addTodo, updateTodo, deleteTodo } from './API'
 import { ToDoItem, TodoItemResult } from './references/codegen/index'
 
 const App: React.FC = () => {
@@ -63,6 +64,13 @@ const App: React.FC = () => {
     .catch((err) => console.log(err))
   }
 
+  const handleSearchTodo = (e: React.FormEvent, searchProp : ISearchTodoProperty): void => {
+    e.preventDefault()
+    getFilteredTodos(searchProp)
+    .then((data : ToDoItem[] | any) =>setTodos(data))
+    .catch((err) => console.log(err))
+  }
+
   const handleUpdateTodo = (todo: ToDoItem): void => {
     updateTodo(todo)
     .then(({ id }) : TodoItemResult | any => {
@@ -91,7 +99,8 @@ const App: React.FC = () => {
     <main className='App'>
       <h1>Your Bourse Todo List</h1>
       <AddTodo saveTodo={handleSaveTodo} />
-      <SortTodo sortTodo={handleSortTodo} refreshTodo={handleRefreshTodo} sortCreatedTodo={handleSortCreatedTodo}/>
+      <SortTodo sortTodo={handleSortTodo} refreshTodo={handleRefreshTodo} sortCreatedTodo={handleSortCreatedTodo} />
+      <SearchTodo searchTodo={handleSearchTodo} />
       {todos.map((todo: ITodo) => (
         <TodoItem
           key={todo.id}

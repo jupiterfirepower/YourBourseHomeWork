@@ -13,6 +13,17 @@ export const getTodos = async (): Promise<ToDoItem[]> => {
   }
 }
 
+export const getFilteredTodos = async (formData : ISearchTodoProperty): Promise<ToDoItem[]> => {
+  try {
+    const todos: ToDoItem[] = await TodoService.getTodoGetFiltered({ description : formData.description })
+    return todos
+  } 
+  catch(error){
+    let result = (error as Error).message;
+    throw new Error(result)
+  }
+}
+
 export const addTodo = async (
   formData: ToDoItem
 ): Promise<TodoItemResult> => {
