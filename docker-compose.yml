@@ -8,6 +8,22 @@ services:
       context: .
       dockerfile: src/YB.Todo/Dockerfile
 
+  client:
+    restart: unless-stopped
+    image: client:latest
+    build:
+      context: .
+      dockerfile: ui/src/Dockerfile
+    ports:
+      - 3001:3000
+    volumes:
+      - ./client:/usr/src/app/ui
+    links:
+      - yb.platform.microservice.todo
+    command: yarn start
+    tty: true
+    stdin_open: true
+
   # MS SQL Server
   mssqldb:
     image: "mcr.microsoft.com/mssql/server"

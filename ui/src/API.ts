@@ -1,6 +1,9 @@
 // Import our client
 import { OpenAPI, ToDoItem, AddToDoItem, UpdateToDoItem, TodoItemResult, TodoService } from './references/codegen/index'
-OpenAPI.BASE = "http://localhost:5178"; // Set this to match your local API endpoint.
+import { AppConfiguration } from "read-appsettings-json"
+//console.log(AppConfiguration.Setting().apiendpoint)
+//const configValue: string = (process.env.REACT_APP_SOME_CONFIGURATION as string)
+OpenAPI.BASE = AppConfiguration.Setting().apiendpoint // Set this to match your local API endpoint.
 
 export const getTodos = async (): Promise<ToDoItem[]> => {
   try {
