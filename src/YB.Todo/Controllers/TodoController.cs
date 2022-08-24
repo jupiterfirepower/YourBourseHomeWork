@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoFilterer.Extensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using YB.Todo.Contracts;
 using YB.Todo.DtoModels;
@@ -32,6 +35,18 @@ public class TodoController : ControllerBase
         var data = await _service.GetListAsync();
 
         return Ok(data);
+    }
+
+    [HttpGet("GetFiltered")]
+    public async Task<ActionResult<IEnumerable<ToDoItem>>> GetFiltered([FromQuery] ToDoItemFilter filter)
+    {
+        var data = await _service.GetListAsync();
+
+        var result = data.AsQueryable()
+                     .ApplyFilter(filter)
+                     .ToList();
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

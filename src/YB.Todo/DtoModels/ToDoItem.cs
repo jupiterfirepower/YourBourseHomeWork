@@ -5,7 +5,8 @@ using System.Text.Json.Serialization;
 
 namespace YB.Todo.DtoModels
 {
-    public record ToDoItem
+    [GenerateAutoFilter]
+    public class ToDoItem
     {
         [Required]
         public int Id { get; set; }
