@@ -19,8 +19,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPlatformMvc();
 
-builder.Services.AddControllers();
-
 builder.Services.AddCors(opts => opts.AddPolicy(name: localHostOrigins, policy =>
 {
     policy.WithOrigins("localhost:5178", "http://localhost:5178", "localhost:7178", "https://localhost:7178", "http://localhost:3000")

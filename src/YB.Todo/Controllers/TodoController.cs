@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using YB.Todo.Attributes;
 using YB.Todo.Contracts;
 using YB.Todo.DtoModels;
+using YB.Todo.Filters;
 using YB.Todo.Models;
 
 namespace YB.Todo.Controllers;
@@ -16,6 +18,7 @@ namespace YB.Todo.Controllers;
 [Route("[controller]")]
 [Produces("application/json")]
 [Consumes("application/json")]
+[ServiceFilter(typeof(LoggingActionFilter))]
 public class TodoController : ControllerBase
 {
     private readonly IToDoService _service;
@@ -65,6 +68,7 @@ public class TodoController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status201Created)]
+    [ValidateModel]
     public async Task<ActionResult<TodoItemResult>> AddAsync([FromBody] [Required] AddToDoItem todoItem)
     {
         var id = await _service.AddAsync(todoItem);
@@ -77,6 +81,7 @@ public class TodoController : ControllerBase
     [HttpPut]
     [ProducesResponseType(typeof(TodoItemResult), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(WebErrorResult), StatusCodes.Status404NotFound)]
+    [ValidateModel]
     public async Task<ActionResult<TodoItemResult>> UpdateAsync([FromBody] [Required] UpdateToDoItem todoItem)
     {
         var model = await _service.GetAsync(todoItem.Id);

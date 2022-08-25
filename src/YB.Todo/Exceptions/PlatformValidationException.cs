@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Net;
+using System.Linq;
 
 namespace YB.Todo.Exceptions
 {
@@ -8,7 +9,7 @@ namespace YB.Todo.Exceptions
     {
         public override int StatusCode => (int)HttpStatusCode.Conflict;
 
-        public List<string> ValidationErrors { get; set; }
+        public IEnumerable<string> ValidationErrors { get; set; }
 
         public PlatformValidationException()
         {
@@ -19,7 +20,7 @@ namespace YB.Todo.Exceptions
         {
         }
 
-        public PlatformValidationException(string message, List<string> validationErrors)
+        public PlatformValidationException(string message, IEnumerable<string> validationErrors)
             : base(message)
         {
             ValidationErrors = validationErrors;

@@ -17,7 +17,7 @@ namespace YB.Todo.Extentions
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(PlatformHttpGlobalExceptionFilter));
-                options.Filters.Add(typeof(ValidateModelActionFilter));
+                //options.Filters.Add(typeof(GlobalValidateModelActionFilter));
             });
 
             services.Configure<ApiBehaviorOptions>(options =>
