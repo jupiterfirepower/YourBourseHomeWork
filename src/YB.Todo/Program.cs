@@ -10,6 +10,7 @@ using YB.Todo.Data;
 using YB.Todo.Repositories;
 using YB.Todo.Services;
 using YB.Todo.Extentions;
+using YB.Todo.Filters;
 
 const string localHostOrigins = "_localHostOrigins";
 
@@ -45,6 +46,7 @@ builder.Services.AddScoped<IDataContext>(provider => provider.GetService<Applica
 builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IToDoService, ToDoService>();
+builder.Services.AddSingleton<LoggingActionFilter>();
 
 var app = builder.Build();
 
